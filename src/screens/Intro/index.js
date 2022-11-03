@@ -1,12 +1,20 @@
 import React, { useState } from "react";
-import { Text, StatusBar, View, Image, ImageBackground } from "react-native";
+import {
+  Text,
+  StatusBar,
+  View,
+  Image,
+  ImageBackground,
+  Switch,
+} from "react-native";
 
 import styled from "styled-components/native";
 import assets from "../../../assets";
+import { useTheme } from "../../context/ThemeContext";
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: #141a26;
+  background-color: ${(theme) => theme.theme.bgColor};
   flex-direction: column;
 `;
 
@@ -72,6 +80,10 @@ const TitleText = styled.Text`
 `;
 
 const IntroScreen = ({ navigation }) => {
+  const { ThemeMode, toggleTheme } = useTheme();
+  const isDarMode = ThemeMode === "light" ? false : true;
+
+  console.log(ThemeMode);
   return (
     <>
       <StatusBar
@@ -94,12 +106,14 @@ const IntroScreen = ({ navigation }) => {
             </BtnBox>
           </BtnWrap>
 
-          <BtnWrap>
+          <Switch onValueChange={toggleTheme} value={isDarMode} />
+
+          {/* <BtnWrap>
             <TitleText>If you have wallet</TitleText>
             <BtnBox onPress={() => navigation.navigate("bring")}>
               <BtnText>Import wallet</BtnText>
             </BtnBox>
-          </BtnWrap>
+          </BtnWrap> */}
         </Section>
       </Container>
     </>

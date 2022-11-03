@@ -1,11 +1,14 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import MainStack from "./src/navigation/MainStack";
+import { ThemeProvider } from "./src/context/ThemeContext";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MainStack />
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer>
+        <MainStack />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
